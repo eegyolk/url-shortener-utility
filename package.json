@@ -5,5 +5,19 @@
   "main": "index.js",
   "repository": "https://github.com/eegyolk/url-shortener-utility",
   "author": "Edgardo Guzman Jr",
-  "private": true
+  "private": true,
+  "engines": {
+    "node": "^18 || ^16 || ^14.19",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "knex": "^2.3.0",
+    "mysql": "^2.18.1",
+    "objection": "^3.0.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.2"
+  }
 }
