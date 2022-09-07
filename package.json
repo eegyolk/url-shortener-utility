@@ -11,6 +11,11 @@
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   },
+  "scripts": {
+    "migrate:make": "node -r dotenv/config ./node_modules/.bin/knex --knexfile=knexfile.js migrate:make",
+    "seed:make": "node -r dotenv/config ./node_modules/.bin/knex --knexfile=knexfile.js seed:make",
+    "migrate:seed": "node -r dotenv/config ./node_modules/.bin/knex --knexfile=knexfile.js migrate:latest && node -r dotenv/config ./node_modules/.bin/knex --knexfile=knexfile.js seed:run"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "knex": "^2.3.0",
