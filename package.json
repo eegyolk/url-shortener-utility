@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Collections of tools for URL Shortener platform.",
   "main": "index.js",
-  "repository": "https://github.com/eegyolk/url_shortener_utility",
+  "repository": "https://github.com/eegyolk/url-shortener-utility",
   "author": "Edgardo Guzman Jr",
   "private": true
 }
