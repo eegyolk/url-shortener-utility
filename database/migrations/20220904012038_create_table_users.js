@@ -26,7 +26,7 @@ exports.up = function (knex) {
     table.timestamp("updated_at").defaultTo(knex.fn.now());
     table.timestamp("deleted_at").nullable();
 
-    table.engine("MyISAM");
+    table.engine("InnoDB");
     table.charset("utf8mb4");
     table.collate("utf8mb4_general_ci");
   });

@@ -34,7 +34,7 @@ exports.up = function (knex) {
       indexName: "uniq_links_domain_slash_tag",
     });
 
-    table.engine("MyISAM");
+    table.engine("InnoDB");
     table.charset("utf8mb4");
     table.collate("utf8mb4_general_ci");
   });
