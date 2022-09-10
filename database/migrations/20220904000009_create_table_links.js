@@ -5,7 +5,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable("links", function (table) {
     table.bigIncrements("id").primary();
-    table.bigInteger("user_id").unsigned().notNullable();
+    table.bigInteger("owner_user_id").unsigned().notNullable();
+    table.bigInteger("creator_user_id").unsigned().notNullable();
     table.string("domain", 100).notNullable();
     table.string("slash_tag", 100).notNullable();
     table.string("destination", 250).notNullable();
@@ -27,7 +28,11 @@ exports.up = function (knex) {
     table.timestamp("deleted_at").nullable();
 
     table
-      .foreign("user_id", "idx_links_user_id")
+      .foreign("owner_user_id", "idx_links_owner_user_id")
+      .references("id")
+      .inTable("users");
+    table
+      .foreign("creator_user_id", "idx_links_creator_user_id")
       .references("id")
       .inTable("users");
     table.unique(["domain", "slash_tag"], {
@@ -37,6 +42,7 @@ exports.up = function (knex) {
     table.engine("InnoDB");
     table.charset("utf8mb4");
     table.collate("utf8mb4_general_ci");
+    table.comment("A user can have multiple links.");
   });
 };
 

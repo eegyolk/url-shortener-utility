@@ -5,7 +5,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable("access_logs", function (table) {
     table.bigIncrements("id").primary();
-    table.bigInteger("user_id").unsigned().notNullable();
+    table.bigInteger("owner_user_id").unsigned().notNullable();
     table.bigInteger("link_id").unsigned().notNullable();
     table.string("link_domain_slash_tag", 200).notNullable();
     table.string("link_domain", 100).notNullable();
@@ -26,7 +26,7 @@ exports.up = function (knex) {
     table.timestamp("updated_at").defaultTo(knex.fn.now());
 
     table
-      .foreign("user_id", "idx_access_logs_user_id")
+      .foreign("owner_user_id", "idx_access_logs_owner_user_id")
       .references("id")
       .inTable("users");
     table
@@ -37,6 +37,9 @@ exports.up = function (knex) {
     table.engine("InnoDB");
     table.charset("utf8mb4");
     table.collate("utf8mb4_general_ci");
+    table.comment(
+      "This table must be for sharding, ex. yyyymmdd_access_logs. Data must be summarized and transfered to a different table w/c is TBD."
+    );
   });
 };
 
