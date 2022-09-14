@@ -16,7 +16,6 @@ exports.up = function (knex) {
     table.string("country", 100).defaultTo("");
     table.string("verification_token", 1000).defaultTo("");
     table.string("verification_md5", 32).index().defaultTo("");
-    table.string("remember_token", 1000).defaultTo("");
     table.string("reset_token", 1000).defaultTo("");
     table.string("reset_md5", 32).index().defaultTo("");
     table.timestamp("verified_at").nullable();

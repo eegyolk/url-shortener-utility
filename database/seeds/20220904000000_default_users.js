@@ -15,22 +15,22 @@ exports.seed = async function (knex) {
   await knex("users").insert([
     {
       full_name: "Default User1",
-      email_address: "default.user1@email.com",
-      password: createPassword("123456"),
+      email_address: "user1@email.com",
+      password: createPassword("11111111"),
       country: "Philippines",
       verified_at: knex.fn.now(),
     },
     {
       full_name: "Default User2",
-      email_address: "default.user2@email.com",
-      password: createPassword("123456"),
+      email_address: "user2@email.com",
+      password: createPassword("22222222"),
       country: "Philippines",
       verified_at: knex.fn.now(),
     },
     {
       full_name: "Default User3",
-      email_address: "default.user3@email.com",
-      password: createPassword("123456"),
+      email_address: "user3@email.com",
+      password: createPassword("33333333"),
       country: "Philippines",
       verified_at: knex.fn.now(),
     },
