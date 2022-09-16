@@ -15,9 +15,9 @@ exports.up = function (knex) {
     table.string("image_url", 1000).defaultTo("");
     table.string("country", 100).defaultTo("");
     table.string("verification_token", 1000).defaultTo("");
-    table.string("verification_md5", 32).index().defaultTo("");
+    table.string("verification_base64", 100).index().defaultTo("");
     table.string("reset_token", 1000).defaultTo("");
-    table.string("reset_md5", 32).index().defaultTo("");
+    table.string("reset_base64", 100).index().defaultTo("");
     table.timestamp("verified_at").nullable();
     table.timestamp("logged_in_at").nullable();
     table.timestamp("reset_at").nullable();
