@@ -21,7 +21,7 @@ exports.up = function (knex) {
     table
       .string("session_id", 100)
       .unique({ indexName: "uniq_users_session_id" })
-      .defaultTo("");
+      .nullable();
     table.timestamp("verified_at").nullable();
     table.timestamp("logged_in_at").nullable();
     table.timestamp("reset_at").nullable();
