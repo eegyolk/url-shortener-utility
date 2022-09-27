@@ -26,18 +26,9 @@ exports.up = function (knex) {
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table.timestamp("updated_at").defaultTo(knex.fn.now());
 
-    table
-      .foreign("owner_user_id", "idx_access_logs_owner_user_id")
-      .references("id")
-      .inTable("users");
-    table
-      .foreign("workspace_id", "idx_access_logs_workspace_id")
-      .references("id")
-      .inTable("workspaces");
-    table
-      .foreign("link_id", "idx_access_logs_link_id")
-      .references("id")
-      .inTable("links");
+    table.foreign("owner_user_id").references("id").inTable("users");
+    table.foreign("workspace_id").references("id").inTable("workspaces");
+    table.foreign("link_id").references("id").inTable("links");
 
     table.engine("InnoDB");
     table.charset("utf8mb4");

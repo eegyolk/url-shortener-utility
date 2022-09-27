@@ -18,17 +18,9 @@ exports.up = function (knex) {
     table.timestamp("updated_at").defaultTo(knex.fn.now());
     table.timestamp("deleted_at").nullable();
 
-    table
-      .foreign("owner_user_id", "idx_utm_parameter_templates_owner_user_id")
-      .references("id")
-      .inTable("users");
-    table
-      .foreign("creator_user_id", "idx_utm_parameter_templates_creator_user_id")
-      .references("id")
-      .inTable("users");
-    table.unique(["owner_user_id", "name"], {
-      indexName: "uniq_utm_parameter_templates_owner_user_id_name",
-    });
+    table.foreign("owner_user_id").references("id").inTable("users");
+    table.foreign("creator_user_id").references("id").inTable("users");
+    table.unique(["owner_user_id", "name"]);
 
     table.engine("InnoDB");
     table.charset("utf8mb4");

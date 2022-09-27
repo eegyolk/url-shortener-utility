@@ -5,14 +5,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable("utm_parameters", function (table) {
     table.increments("id").primary();
-    table
-      .string("label", 10)
-      .unique({ indexName: "uniq_utm_parameters_label" })
-      .notNullable();
-    table
-      .string("key", 15)
-      .unique({ indexName: "uniq_utm_parameters_key" })
-      .notNullable();
+    table.string("label", 10).unique().notNullable();
+    table.string("key", 15).unique().notNullable();
     table.string("description", 250).defaultTo("");
     table.timestamp("created_at").defaultTo(knex.fn.now());
 

@@ -18,25 +18,11 @@ exports.up = function (knex) {
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table.timestamp("updated_at").defaultTo(knex.fn.now());
 
-    table
-      .foreign("workspace_id", "idx_workspace_members_workspace_id")
-      .references("id")
-      .inTable("workspaces");
-    table
-      .foreign("owner_user_id", "idx_workspace_members_owner_user_id")
-      .references("id")
-      .inTable("users");
-    table
-      .foreign("creator_user_id", "idx_workspace_members_creator_user_id")
-      .references("id")
-      .inTable("users");
-    table
-      .foreign("user_id", "idx_workspace_members_user_id")
-      .references("id")
-      .inTable("users");
-    table.unique(["workspace_id", "user_id"], {
-      indexName: "uniq_workspace_members_workspace_id_user_id",
-    });
+    table.foreign("workspace_id").references("id").inTable("workspaces");
+    table.foreign("owner_user_id").references("id").inTable("users");
+    table.foreign("creator_user_id").references("id").inTable("users");
+    table.foreign("user_id").references("id").inTable("users");
+    table.unique(["workspace_id", "user_id"]);
 
     table.engine("InnoDB");
     table.charset("utf8mb4");

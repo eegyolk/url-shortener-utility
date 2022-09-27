@@ -13,22 +13,13 @@ exports.up = function (knex) {
     table.timestamp("updated_at").defaultTo(knex.fn.now());
     table.timestamp("deleted_at").nullable();
 
-    // table
-    //   .foreign("utm_parameter_id", "idx_utm_parameter_values_utm_parameter_id")
-    //   .references("id")
-    //   .inTable("utm_parameters");
     table
-      .foreign("owner_user_id", "idx_utm_parameter_values_owner_user_id")
+      .foreign("utm_parameter_id")
       .references("id")
-      .inTable("users");
-    table
-      .foreign("creator_user_id", "idx_utm_parameter_values_creator_user_id")
-      .references("id")
-      .inTable("users");
-    table.unique(["utm_parameter_id", "owner_user_id", "value"], {
-      indexName:
-        "uniq_utm_parameter_values_utm_parameter_id_owner_user_id_value",
-    });
+      .inTable("utm_parameters");
+    table.foreign("owner_user_id").references("id").inTable("users");
+    table.foreign("creator_user_id").references("id").inTable("users");
+    table.unique(["utm_parameter_id", "owner_user_id", "value"]);
 
     table.engine("InnoDB");
     table.charset("utf8mb4");
