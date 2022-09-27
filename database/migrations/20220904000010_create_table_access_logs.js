@@ -6,6 +6,7 @@ exports.up = function (knex) {
   return knex.schema.createTable("access_logs", function (table) {
     table.bigIncrements("id").primary();
     table.bigInteger("owner_user_id").unsigned().notNullable();
+    table.bigInteger("workspace_id").unsigned().notNullable();
     table.bigInteger("link_id").unsigned().notNullable();
     table.string("link_domain_slash_tag", 200).notNullable();
     table.string("link_domain", 100).notNullable();
@@ -29,6 +30,10 @@ exports.up = function (knex) {
       .foreign("owner_user_id", "idx_access_logs_owner_user_id")
       .references("id")
       .inTable("users");
+    table
+      .foreign("workspace_id", "idx_access_logs_workspace_id")
+      .references("id")
+      .inTable("workspaces");
     table
       .foreign("link_id", "idx_access_logs_link_id")
       .references("id")
