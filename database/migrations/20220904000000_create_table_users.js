@@ -25,9 +25,15 @@ exports.up = function (knex) {
     table.timestamp("verified_at").nullable();
     table.timestamp("logged_in_at").nullable();
     table.timestamp("reset_at").nullable();
+    table.bigInteger("primary_workspace_id").unsigned().notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table.timestamp("updated_at").defaultTo(knex.fn.now());
     table.timestamp("deleted_at").nullable();
+
+    table
+      .foreign("primary_workspace_id", "idx_users_primary_workspace_id")
+      .references("id")
+      .inTable("workspaces");
 
     table.engine("InnoDB");
     table.charset("utf8mb4");

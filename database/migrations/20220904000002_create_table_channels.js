@@ -7,6 +7,7 @@ exports.up = function (knex) {
     table.bigIncrements("id").primary();
     table.bigInteger("owner_user_id").unsigned().notNullable();
     table.bigInteger("creator_user_id").unsigned().notNullable();
+    table.bigInteger("workspace_id").unsigned().notNullable();
     table.string("name", 100).notNullable();
     table.string("platform", 100).notNullable();
     table.string("identifier", 100).notNullable();
@@ -23,9 +24,17 @@ exports.up = function (knex) {
       .foreign("creator_user_id", "idx_channels_creator_user_id")
       .references("id")
       .inTable("users");
-    table.unique(["owner_user_id", "name", "platform", "identifier"], {
-      indexName: "uniq_channels_owner_user_id_name_platform_identifier",
-    });
+    table
+      .foreign("workspace_id", "idx_channels_workspace_id")
+      .references("id")
+      .inTable("workspaces");
+    table.unique(
+      ["owner_user_id", "workspace_id", "name", "platform", "identifier"],
+      {
+        indexName:
+          "uniq_channels_owner_user_id_workspace_id_name_platform_identifier",
+      }
+    );
 
     table.engine("InnoDB");
     table.charset("utf8mb4");

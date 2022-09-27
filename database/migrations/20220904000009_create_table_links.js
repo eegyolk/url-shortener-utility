@@ -7,6 +7,7 @@ exports.up = function (knex) {
     table.bigIncrements("id").primary();
     table.bigInteger("owner_user_id").unsigned().notNullable();
     table.bigInteger("creator_user_id").unsigned().notNullable();
+    table.bigInteger("workspace_id").unsigned().notNullable();
     table.string("domain", 100).notNullable();
     table.string("slash_tag", 100).notNullable();
     table.string("destination", 250).notNullable();
@@ -35,6 +36,10 @@ exports.up = function (knex) {
       .foreign("creator_user_id", "idx_links_creator_user_id")
       .references("id")
       .inTable("users");
+    table
+      .foreign("workspace_id", "idx_links_workspace_id")
+      .references("id")
+      .inTable("workspaces");
     table.unique(["domain", "slash_tag"], {
       indexName: "uniq_links_domain_slash_tag",
     });
