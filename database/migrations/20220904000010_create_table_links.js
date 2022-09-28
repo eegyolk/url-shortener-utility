@@ -13,9 +13,9 @@ exports.up = function (knex) {
     table.string("destination", 250).notNullable();
     table.json("tags").nullable();
     table.json("channels").nullable();
-    table.string("og_title", 100).defaultTo("");
-    table.string("og_description", 250).defaultTo("");
-    table.string("og_image", 1000).defaultTo("");
+    table.string("site_title", 100).defaultTo("");
+    table.string("site_description", 250).defaultTo("");
+    table.string("site_icon", 1000).defaultTo("");
     table.string("utm_source", 100).defaultTo("");
     table.string("utm_medium", 100).defaultTo("");
     table.string("utm_campaign", 100).defaultTo("");
