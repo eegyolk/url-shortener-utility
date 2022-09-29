@@ -9,7 +9,7 @@ exports.up = function (knex) {
     table.bigInteger("creator_user_id").unsigned().notNullable();
     table.bigInteger("workspace_id").unsigned().notNullable();
     table.string("domain", 100).notNullable();
-    table.string("slash_tag", 100).notNullable();
+    table.string("slash_tag", 100).notNullable().collate("utf8mb4_bin");
     table.string("destination", 250).notNullable();
     table.json("tags").nullable();
     table.json("channels").nullable();
