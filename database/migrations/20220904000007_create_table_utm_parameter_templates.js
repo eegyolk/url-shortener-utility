@@ -17,7 +17,6 @@ exports.up = function (knex) {
     table.string("description", 250).defaultTo("");
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table.timestamp("updated_at").defaultTo(knex.fn.now());
-    table.timestamp("deleted_at").nullable();
 
     table.foreign("owner_user_id").references("id").inTable("users");
     table.foreign("creator_user_id").references("id").inTable("users");
